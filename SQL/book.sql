@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : mar. 09 avr. 2024 à 22:24
+-- Généré le : mer. 14 août 2024 à 02:34
 -- Version du serveur : 10.4.32-MariaDB
 -- Version de PHP : 8.0.30
 
@@ -37,7 +37,8 @@ CREATE TABLE `category` (
 --
 
 INSERT INTO `category` (`idCategory`, `nameCategory`) VALUES
-(24, 'romantique');
+(1, 'T-Shirt'),
+(2, 'Vestes');
 
 -- --------------------------------------------------------
 
@@ -53,6 +54,17 @@ CREATE TABLE `command` (
   `stateCommand` varchar(280) NOT NULL DEFAULT 'En cours de traitement'
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
+--
+-- Déchargement des données de la table `command`
+--
+
+INSERT INTO `command` (`idCommand`, `idUserCommand`, `amountCommand`, `dateCommand`, `stateCommand`) VALUES
+(15, 18, 20, '2024-08-06 20:10:28', 'En cours de traitement'),
+(16, 18, 50, '2024-08-06 21:56:19', 'En cours de traitement'),
+(17, 18, 200, '2024-08-07 16:39:13', 'En cours de traitement'),
+(18, 18, 20, '2024-08-07 16:39:28', 'En cours de traitement'),
+(19, 20, 20, '2024-08-07 18:39:30', 'En cours de traitement');
+
 -- --------------------------------------------------------
 
 --
@@ -66,6 +78,23 @@ CREATE TABLE `detailscommand` (
   `quantityDetailsCommand` int(3) NOT NULL,
   `priceDetailsCommand` int(3) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+--
+-- Déchargement des données de la table `detailscommand`
+--
+
+INSERT INTO `detailscommand` (`idDetailsCommand`, `idCommandDetailsCommand`, `idProductDetailsCommand`, `quantityDetailsCommand`, `priceDetailsCommand`) VALUES
+(14, 15, 17, 1, 20),
+(15, 16, 17, 1, 20),
+(16, 16, 17, 1, 20),
+(17, 16, 18, 1, 10),
+(18, 17, 20, 1, 20),
+(19, 17, 19, 1, 10),
+(20, 17, 24, 1, 70),
+(21, 17, 24, 1, 70),
+(22, 17, 21, 1, 30),
+(23, 18, 20, 1, 20),
+(24, 19, 20, 1, 20);
 
 -- --------------------------------------------------------
 
@@ -91,8 +120,8 @@ CREATE TABLE `member` (
 --
 
 INSERT INTO `member` (`idMember`, `pseudoMember`, `passwordMember`, `nameMember`, `firstnameMember`, `emailMember`, `cityMember`, `postalCodeMember`, `adressMember`, `isAdmin`) VALUES
-(16, 'admin', 'd033e22ae348aeb5660fc2140aec35850c4da997', 'admin', 'admin', 'admin@gmail.com', 'montreal', '18000', 'place montoire', 1),
-(17, 'meriem', '1efcfaab69361232b5e5e39265464be84f6e484f', 'mekrarbech', 'meriem', 'mekrarbech12@gmail.com', 'Anjou', '23000', '8191 PLACE MONTOIRE', 0);
+(18, 'zri1', 'a3dbf21b0fbd0d597df37d2d149198b0fad10dd1', 'mm', 'pp', 'zri1@gmail.com', 'Montréal', '12300', '5284 AV. Jeanne-d\'Arc', 1),
+(20, 'user3', '95c946bf622ef93b0a211cd0fd028dfdfcf7e39e', 'userrrr', 'userrrr', 'user3@gmail.com', 'user3v', '30000', 'user3A', 0);
 
 -- --------------------------------------------------------
 
@@ -115,7 +144,11 @@ CREATE TABLE `product` (
 --
 
 INSERT INTO `product` (`idProduct`, `nameProduct`, `descriptionProduct`, `imageProduct`, `priceProduct`, `stockProduct`, `idCategoryProduct`) VALUES
-(17, 'Romeo et Juliette', 'Romeo et Juliette', 'bsrc_download.jpg', 20, 15, 24);
+(19, 'Produit1', 'p1', 'produit1.jpg', 10, 10, 1),
+(20, 'Produit2', 'p2', 'produit2.jpg', 20, 20, 1),
+(21, 'Produit3', 'p3', 'produit3.jpg', 30, 30, 1),
+(22, 'Produit5', 'p5', 'produit5.jpg', 40, 40, 2),
+(23, 'Produit6', 'p6', 'produit6.jpg', 60, 60, 2);
 
 --
 -- Index pour les tables déchargées
@@ -163,31 +196,31 @@ ALTER TABLE `product`
 -- AUTO_INCREMENT pour la table `category`
 --
 ALTER TABLE `category`
-  MODIFY `idCategory` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `idCategory` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT pour la table `command`
 --
 ALTER TABLE `command`
-  MODIFY `idCommand` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `idCommand` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT pour la table `detailscommand`
 --
 ALTER TABLE `detailscommand`
-  MODIFY `idDetailsCommand` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `idDetailsCommand` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT pour la table `member`
 --
 ALTER TABLE `member`
-  MODIFY `idMember` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `idMember` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT pour la table `product`
 --
 ALTER TABLE `product`
-  MODIFY `idProduct` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `idProduct` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
